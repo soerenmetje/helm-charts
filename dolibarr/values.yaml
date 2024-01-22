@@ -196,7 +196,7 @@ ingress:
   ## @param ingress.enabled Enable ingress controller resource
   enabled: false
 
-  ## @param ingress.ingressClassName IngressClass that will be be used to implement the Ingress
+  ## @param ingress.ingressClassName IngressClass that will be used to implement the Ingress
   ingressClassName: ""
 
   ## @param ingress.pathType Ingress path type
@@ -280,6 +280,10 @@ persistence:
   existingClaim:
   # existingClaim: my-pvc
 
+  ## @param persistence.existingClaimHtmlCustom Name of an existing PVC for Dolibarr installed / modified modules
+  existingClaimHtmlCustom:
+  # existingClaimHtmlCustom: htmlcustom-pvc
+
   ## @param persistence.accessMode PVC access mode
   accessMode: ReadWriteOnce
 
@@ -346,6 +350,8 @@ mariadb:
     existingSecret: ""
 
   primary:
+    persistence:
+      existingClaim:
     service:
       ports:
         ## @param mariadb.primary.service.ports.mysql MariaDB port

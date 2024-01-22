@@ -63,6 +63,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/www/documents
+            - name: htmlcustom
+              mountPath: /var/www/html/custom
       containers:
         - name: dolibarr
           securityContext:
@@ -154,6 +156,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/www/documents
+            - name: htmlcustom
+              mountPath: /var/www/html/custom
         {{- if .Values.dolibarr.cron.enabled }}
         - name: cron
           securityContext:
@@ -208,6 +212,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/www/documents
+            - name: htmlcustom
+              mountPath: /var/www/html/custom
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -226,6 +232,13 @@ spec:
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
             claimName: {{ default (include "dolibarr.fullname" .) .Values.persistence.existingClaim }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: htmlcustom
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ default (printf "%s-htmlcustom" (include "dolibarr.fullname" .)) .Values.persistence.existingClaimHtmlCustom }}
           {{- else }}
           emptyDir: {}
           {{- end }}
