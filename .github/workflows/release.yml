@@ -19,6 +19,13 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
+      - name: Merge main into gh-pages
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Set up Helm
         uses: azure/setup-helm@v3.5
         with:
