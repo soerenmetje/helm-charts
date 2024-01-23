@@ -6,7 +6,8 @@
 [![Semantic Versioning](https://img.shields.io/badge/Semantic%20Versioning-2.0.0-yellow.svg?logo=semver)](https://semver.org/)
 
 
-Collection of charts for Helm to deploy applications on Kubernetes cluster.
+This repository contains a collection of my Helm charts to deploy applications on a Kubernetes cluster.
+All charts of this repository can be inspected also on [Artifact Hub](https://artifacthub.io/packages/search?repo=soerenmetje&sort=relevance&page=1).
 
 ## Charts
 
