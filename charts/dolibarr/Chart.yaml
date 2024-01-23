@@ -4,11 +4,12 @@ description: A modern software package to manage your company or foundation's ac
 home: https://www.dolibarr.org/
 icon: https://raw.githubusercontent.com/Dolibarr/dolibarr/develop/doc/images/dolibarr_256x256_color.svg
 maintainers:
-  - name: sebastien-prudhomme
-    email: sebastien.prudhomme@gmail.com
+  - name: Sören Metje
+    email: soerenmetje@yahoo.de
 name: dolibarr
 sources:
   - https://github.com/Dolibarr/dolibarr
+  - https://github.com/soerenmetje/helm-charts/tree/master/charts/dolibarr
   - https://github.com/cowboysysop/charts/tree/master/charts/dolibarr
 version: 1.0.0
 dependencies:
