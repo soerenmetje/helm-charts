@@ -1,5 +1,7 @@
 # Helm Charts
 
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/soerenmetje)](https://artifacthub.io/packages/search?repo=soerenmetje)
+
 Collection of charts for Helm to deploy applications on Kubernetes cluster.
 
 ## Charts
