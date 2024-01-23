@@ -3,9 +3,10 @@
 [Dolibarr](https://www.dolibarr.org/) is a web application to manage your company or foundation's activity (contacts, suppliers, invoices, orders, stocks, agenda, accounting, ...).
 This chart bootstraps a Dolibarr deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager. It uses the [tuxgasy/dolibarr](https://hub.docker.com/r/tuxgasy/dolibarr) Docker image.
 
-**DISCLAIMER**: This is an unofficial chart not supported by Dolibarr authors.
+> **DISCLAIMER**: This is an unofficial chart not supported by Dolibarr authors.
 
 > Forked from https://github.com/cowboysysop/charts/tree/0641bb51555291514713b2c788bfb5c48ad4f63a/charts/dolibarr
+> to add PVC for Dolibarr html/custom directory
 
 ## Prerequisites
 
@@ -35,7 +36,7 @@ These commands deploy Dolibarr on the Kubernetes cluster with the release name `
 Upgrade the chart deployment:
 
 ```bash
-helm upgrade my-release soerenmetje/dolibarr
+helm upgrade my-release soerenmetje/dolibarr -f my-dolibarr-vals.yaml
 ```
 
 The command upgrades the existing `my-release` deployment with the most latest release of the chart.
