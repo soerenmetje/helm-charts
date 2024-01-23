@@ -18,3 +18,4 @@ Collection of charts for Helm to deploy applications on Kubernetes cluster.
 ## Sources
 - Publish chart at Artifacthub: https://www.devopsschool.com/blog/helm-tutorial-how-to-publish-chart-at-artifacthub/
 - GitHub action to publish a chart: https://github.com/helm/chart-releaser-action
+- GitHub action to merge commits on main into gh-pages: https://github.com/everlytic/branch-merge
