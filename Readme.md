@@ -10,3 +10,8 @@ Collection of charts for Helm to deploy applications on Kubernetes cluster.
 | Name                                  | Description                                                                                                                              |
 |---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | [dolibarr](charts/dolibarr/README.md) | Web application to manage your company or foundation's activity (contacts, suppliers, invoices, orders, stocks, agenda, accounting, ...) |
+
+
+## Sources
+- Publish chart at Artifacthub: https://www.devopsschool.com/blog/helm-tutorial-how-to-publish-chart-at-artifacthub/
+- GitHub action to publish a chart: https://github.com/helm/chart-releaser-action
