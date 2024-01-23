@@ -11,7 +11,7 @@ sources:
   - https://github.com/Dolibarr/dolibarr
   - https://github.com/soerenmetje/helm-charts/tree/master/charts/dolibarr
   - https://github.com/cowboysysop/charts/tree/master/charts/dolibarr
-version: 1.0.0
+version: 1.0.1
 dependencies:
   - name: common
     version: 2.9.0
