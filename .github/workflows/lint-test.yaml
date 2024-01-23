@@ -1,0 +1,110 @@
+name: Lint and Test Charts
+
+on: pull_request
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        helm:
+          - v3.9.4 # renovate: helm
+          - v3.10.3 # renovate: helm
+          - v3.11.3 # renovate: helm
+          - v3.12.3 # renovate: helm
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v3.5
+        with:
+          version: ${{ matrix.helm }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4.7.1
+        with:
+          python-version: 3.12.0 # renovate: python
+
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.6.1
+
+      - name: Run chart-testing (list-changed)
+        id: list-changed
+        run: |
+          changed=$(ct list-changed)
+          if [[ -n "$changed" ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run chart-testing (lint)
+        run: ct lint --config ct.yaml
+        if: steps.list-changed.outputs.changed == 'true'
+  test:
+    needs:
+      - lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        kubernetes:
+          - v1.24.15 # renovate: kindest/node
+          - v1.25.11 # renovate: kindest/node
+          - v1.26.6 # renovate: kindest/node
+          - v1.27.3 # renovate: kindest/node
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v3.5
+        with:
+          version: v3.12.3 # renovate: helm
+
+      - name: Set up Python
+        uses: actions/setup-python@v4.7.1
+        with:
+          python-version: 3.12.0 # renovate: python
+
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.6.1
+
+      - name: List excluded charts
+        id: list-excluded
+        run: |
+          pip install semantic_version
+          excluded=$(python .github/excluded-charts.py --kube-version ${{ matrix.kubernetes }})
+          echo "excluded=$excluded" >> $GITHUB_OUTPUT
+
+      - name: Run chart-testing (list-changed)
+        id: list-changed
+        run: |
+          changed=$(ct list-changed --config ct.yaml --excluded-charts "${{ steps.list-excluded.outputs.excluded }}")
+          if [[ -n "$changed" ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create kind cluster
+        uses: helm/kind-action@v1.8.0
+        if: steps.list-changed.outputs.changed == 'true'
+        with:
+          node_image: kindest/node:${{ matrix.kubernetes }}
+
+      - name: Run chart-testing (install)
+        run: ct install --config ct.yaml --excluded-charts "${{ steps.list-excluded.outputs.excluded }}"
+        if: steps.list-changed.outputs.changed == 'true'
+  checkov:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+
+      - name: Run Checkov
+        uses: bridgecrewio/checkov-action@v12.2575.0
+        with:
+          config_file: checkov.yaml
