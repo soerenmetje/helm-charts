@@ -22,6 +22,6 @@ dependencies:
     condition: mariadb.enabled
 annotations:
   artifacthub.io/signKey: |
-    fingerprint: 9E57D2479D48B84463EF491F66D280CE667AD6C8
-    url: https://cowboysysop.github.io/charts/pgp-public-key-2022-02-19.asc
+    fingerprint: 61F2C4B5DAB61E96DAE9FCDB3DFBC2E2EA612765
+    url: https://soerenmetje.github.io/helm-charts/gpg-public-key.asc
   kubeVersion: ">=1.24"
