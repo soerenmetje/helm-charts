@@ -1,0 +1,36 @@
+apiVersion: v1
+entries:
+  dolibarr:
+  - annotations:
+      artifacthub.io/signKey: |
+        fingerprint: 61F2C4B5DAB61E96DAE9FCDB3DFBC2E2EA612765
+        url: https://soerenmetje.github.io/helm-charts/gpg-public-key.asc
+      kubeVersion: '>=1.24'
+    apiVersion: v2
+    appVersion: 19.0.2
+    created: "2024-05-19T21:55:20.674629361Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami/
+      version: 2.19.2
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami/
+      version: 18.0.6
+    description: A modern software package to manage your company or foundation's
+      activity
+    digest: 6dd41d9681ff49dc17c7b53b3c5b4a80d366d97c04b878a6174ce48e4915d251
+    home: https://www.dolibarr.org/
+    icon: https://raw.githubusercontent.com/Dolibarr/dolibarr/develop/doc/images/dolibarr_256x256_color.svg
+    maintainers:
+    - email: soerenmetje@yahoo.de
+      name: Sören Metje
+    name: dolibarr
+    sources:
+    - https://github.com/Dolibarr/dolibarr
+    - https://github.com/soerenmetje/helm-charts/tree/master/charts/dolibarr
+    - https://github.com/cowboysysop/charts/tree/master/charts/dolibarr
+    urls:
+    - https://github.com/soerenmetje/helm-charts/releases/download/dolibarr-1.0.2/dolibarr-1.0.2.tgz
+    version: 1.0.2
+generated: "2024-05-19T21:55:20.67463973Z"
