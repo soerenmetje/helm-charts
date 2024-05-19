@@ -1,5 +1,5 @@
 apiVersion: v2
-version: 1.0.3
+version: 1.0.4
 appVersion: 19.0.2
 description: A modern software package to manage your company or foundation's activity
 home: https://www.dolibarr.org/
