@@ -16,6 +16,9 @@ All charts of this repository can be inspected also on [Artifact Hub](https://ar
 | [dolibarr](charts/dolibarr/README.md) | Web application to manage your company or foundation's activity (contacts, suppliers, invoices, orders, stocks, agenda, accounting, ...) |
 
 
+## Development
+Push changes to main. Deployments on GitHub pages are managed automatically by the GitHub _release_ action.
+
 ## Sources
 - Publish chart at Artifacthub: https://www.devopsschool.com/blog/helm-tutorial-how-to-publish-chart-at-artifacthub/
 - GitHub action to publish a chart: https://github.com/helm/chart-releaser-action
